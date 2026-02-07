@@ -57,33 +57,44 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log('🛣️ [ROUTER] Navegando de:', from.path, 'a:', to.path)
+  
   const user = authService.getCurrentUser()
   const isAuthenticated = !!authService.getToken()
 
+  console.log('👤 [ROUTER] Usuario:', user)
+  console.log('🔐 [ROUTER] Autenticado:', isAuthenticated)
+  console.log('🔒 [ROUTER] Meta datos de ruta:', to.meta)
+
   // Redirigir a home si ya está autenticado e intenta ir a login
   if (to.meta.requiresGuest && isAuthenticated) {
+    console.log('↩️ [ROUTER] Redirigiendo a home (ya autenticado)')
     next('/')
     return
   }
 
   // Verificar autenticación
   if (to.meta.requiresAuth && !isAuthenticated) {
+    console.log('🔒 [ROUTER] Redirigiendo a login (no autenticado)')
     next('/login')
     return
   }
 
   // Verificar rol de dueño
   if (to.meta.requiresDueno && user?.rol !== 'DUENO') {
+    console.log('❌ [ROUTER] Acceso denegado (requiere rol DUENO)')
     next('/')
     return
   }
 
   // Verificar rol de trabajador
   if (to.meta.requiresTrabajador && user?.rol !== 'TRABAJADOR') {
+    console.log('❌ [ROUTER] Acceso denegado (requiere rol TRABAJADOR)')
     next('/')
     return
   }
 
+  console.log('✅ [ROUTER] Navegación permitida')
   next()
 })
 

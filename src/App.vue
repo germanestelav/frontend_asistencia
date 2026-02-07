@@ -6,6 +6,14 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted() {
+    console.log('🎨 [APP] App.vue montado correctamente')
+    console.log('🌐 [APP] Ruta actual:', this.$router.currentRoute.value.path)
+    console.log('📱 [APP] User agent:', navigator.userAgent)
+  },
+  updated() {
+    console.log('🔄 [APP] App.vue actualizado')
+  }
 }
 </script>
