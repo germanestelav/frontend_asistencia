@@ -1,0 +1,75 @@
+:root {
+  --primary: #FF6B35;
+  --success: #4CAF50;
+  --warning: #FFC107;
+  --danger: #F44336;
+  --info: #2196F3;
+  --dark: #212121;
+  --light: #F5F5F5;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: #e65a2a;
+  border-color: #e65a2a;
+}
+
+.badge-a-tiempo {
+  background-color: var(--success);
+  color: white;
+}
+
+.badge-tardanza {
+  background-color: var(--danger);
+  color: white;
+}
+
+.badge-salida-ok {
+  background-color: var(--success);
+  color: white;
+}
+
+.badge-salida-anticipada {
+  background-color: var(--warning);
+  color: black;
+}
+
+.badge-sin-salida {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.navbar {
+  background-color: var(--primary) !important;
+}
+
+.stat-card {
+  border-left: 4px solid var(--primary);
+}
+
+.qr-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
