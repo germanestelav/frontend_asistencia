@@ -1,19 +1,27 @@
 <template>
-  <div id="app">
+  <div id="app" class="app-wrapper">
     <router-view />
+    <Footer />
   </div>
 </template>
 
 <script>
+import Footer from '@/components/Footer.vue'
+
 export default {
   name: 'App',
-  mounted() {
-    console.log('🎨 [APP] App.vue montado correctamente')
-    console.log('🌐 [APP] Ruta actual:', this.$router.currentRoute.value.path)
-    console.log('📱 [APP] User agent:', navigator.userAgent)
-  },
-  updated() {
-    console.log('🔄 [APP] App.vue actualizado')
-  }
+  components: { Footer }
 }
 </script>
+
+<style>
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-wrapper > .app-footer {
+  margin-top: auto;
+}
+</style>

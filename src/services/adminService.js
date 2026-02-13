@@ -35,6 +35,14 @@ export const adminService = {
     })
     return response.data
   },
+
+  cambiarRol: async (usuario_id, nuevo_rol) => {
+    const response = await api.put('/admin/usuarios/cambiar-rol', {
+      usuario_id,
+      nuevo_rol
+    })
+    return response.data
+  },
   
   // Estadísticas
   getEstadisticasHoy: async () => {

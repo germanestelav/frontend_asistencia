@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { authService } from '@/services/authService'
 
 const routes = [
@@ -18,13 +18,13 @@ const routes = [
     path: '/generar-qr',
     name: 'GenerarQR',
     component: () => import('@/views/GenerarQR.vue'),
-    meta: { requiresAuth: true, requiresTrabajador: true }
+    meta: { requiresAuth: true }
   },
   {
     path: '/historial',
     name: 'Historial',
     component: () => import('@/views/Historial.vue'),
-    meta: { requiresAuth: true, requiresTrabajador: true }
+    meta: { requiresAuth: true }
   },
   {
     path: '/escanear',
@@ -35,66 +35,49 @@ const routes = [
     path: '/admin/trabajadores',
     name: 'AdminTrabajadores',
     component: () => import('@/views/admin/Trabajadores.vue'),
-    meta: { requiresAuth: true, requiresDueno: true }
+    meta: { requiresAuth: true, requiresAdmin: true }
   },
   {
     path: '/admin/crear-trabajador',
     name: 'AdminCrearTrabajador',
     component: () => import('@/views/admin/CrearTrabajador.vue'),
-    meta: { requiresAuth: true, requiresDueno: true }
+    meta: { requiresAuth: true, requiresAdmin: true }
   },
   {
     path: '/admin/reportes',
     name: 'AdminReportes',
     component: () => import('@/views/admin/Reportes.vue'),
-    meta: { requiresAuth: true, requiresDueno: true }
+    meta: { requiresAuth: true, requiresAdmin: true }
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('🛣️ [ROUTER] Navegando de:', from.path, 'a:', to.path)
-  
   const user = authService.getCurrentUser()
   const isAuthenticated = !!authService.getToken()
 
-  console.log('👤 [ROUTER] Usuario:', user)
-  console.log('🔐 [ROUTER] Autenticado:', isAuthenticated)
-  console.log('🔒 [ROUTER] Meta datos de ruta:', to.meta)
-
   // Redirigir a home si ya está autenticado e intenta ir a login
   if (to.meta.requiresGuest && isAuthenticated) {
-    console.log('↩️ [ROUTER] Redirigiendo a home (ya autenticado)')
     next('/')
     return
   }
 
   // Verificar autenticación
   if (to.meta.requiresAuth && !isAuthenticated) {
-    console.log('🔒 [ROUTER] Redirigiendo a login (no autenticado)')
     next('/login')
     return
   }
 
-  // Verificar rol de dueño
-  if (to.meta.requiresDueno && user?.rol !== 'DUENO') {
-    console.log('❌ [ROUTER] Acceso denegado (requiere rol DUENO)')
+  // Verificar rol de administrador
+  if (to.meta.requiresAdmin && user?.rol !== 'ADMINISTRADOR') {
     next('/')
     return
   }
 
-  // Verificar rol de trabajador
-  if (to.meta.requiresTrabajador && user?.rol !== 'TRABAJADOR') {
-    console.log('❌ [ROUTER] Acceso denegado (requiere rol TRABAJADOR)')
-    next('/')
-    return
-  }
-
-  console.log('✅ [ROUTER] Navegación permitida')
   next()
 })
 

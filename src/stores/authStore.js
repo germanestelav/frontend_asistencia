@@ -9,7 +9,8 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   getters: {
-    isDueno: (state) => state.user?.rol === 'DUENO',
+    isAdmin: (state) => state.user?.rol === 'ADMINISTRADOR',
+    isDueno: (state) => state.user?.rol === 'ADMINISTRADOR',
     isTrabajador: (state) => state.user?.rol === 'TRABAJADOR',
     nombreCompleto: (state) => {
       if (!state.user) return ''

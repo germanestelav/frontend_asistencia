@@ -59,7 +59,7 @@
                     <label class="form-label">Rol *</label>
                     <select v-model="form.rol" class="form-select" required>
                       <option value="TRABAJADOR">Trabajador</option>
-                      <option value="DUENO">Dueño</option>
+                      <option value="ADMINISTRADOR">Administrador</option>
                     </select>
                   </div>
                 </div>

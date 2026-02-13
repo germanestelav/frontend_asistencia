@@ -73,11 +73,15 @@
       <div class="mb-4">
         <button 
           @click="generarReporte" 
-          class="btn btn-primary btn-lg"
+          class="btn restaurant-primary-btn btn-lg"
           :disabled="loading"
         >
-          <span v-if="loading">Generando...</span>
-          <span v-else>Generar Reporte</span>
+          <i class="bi bi-file-earmark-bar-graph me-2"></i>
+          <span v-if="loading">
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Generando...
+          </span>
+          <span v-else>GENERAR REPORTE</span>
         </button>
       </div>
 
@@ -132,19 +136,12 @@
               </tbody>
             </table>
           </div>
-
-          <div class="alert alert-info mt-4">
-            <h6>Información para Planilla</h6>
-            <p class="mb-0">
-              Este reporte muestra los días trabajados y tardanzas de cada trabajador. 
-              Úsalo para calcular descuentos por faltas, tardanzas y bonos por asistencia perfecta.
-            </p>
-          </div>
         </div>
       </div>
 
-      <div class="mt-4">
-        <router-link to="/" class="btn btn-secondary">
+      <div class="mt-4 mb-5 pb-3">
+        <router-link to="/" class="btn restaurant-secondary-btn">
+          <i class="bi bi-house me-2"></i>
           Volver al Inicio
         </router-link>
       </div>
@@ -397,3 +394,114 @@ onMounted(() => {
   // Inicializar modal si es necesario
 })
 </script>
+
+<style scoped>
+/* Restaurant branding styles */
+.restaurant-primary-btn {
+  background: linear-gradient(135deg, #c62d42 0%, #dc3545 100%);
+  border: none;
+  border-radius: 25px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(198, 45, 66, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.restaurant-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 45, 66, 0.4);
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(135deg, #a02332 0%, #b02a37 100%);
+}
+
+.restaurant-primary-btn:disabled {
+  opacity: 0.7;
+  transform: none;
+  box-shadow: 0 4px 15px rgba(198, 45, 66, 0.2);
+}
+
+.restaurant-secondary-btn {
+  background: #6c757d;
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.restaurant-secondary-btn:hover {
+  background: #5c6268;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+h3 {
+  color: #c62d42;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: bold;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  background: white;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(198, 45, 66, 0.05);
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border-left: 4px solid #17a2b8;
+  border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .restaurant-primary-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .restaurant-secondary-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .table {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .restaurant-primary-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .restaurant-secondary-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .table {
+    font-size: 0.8rem;
+  }
+}
+</style>

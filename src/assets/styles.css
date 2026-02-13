@@ -1,11 +1,14 @@
 :root {
-  --primary: #FF6B35;
-  --success: #4CAF50;
+  --primary: #c62d42;
+  --primary-hover: #a02332;
+  --primary-light: rgba(198, 45, 66, 0.1);
+  --success: #28a745;
   --warning: #FFC107;
-  --danger: #F44336;
-  --info: #2196F3;
+  --danger: #dc3545;
+  --info: #6c757d;
   --dark: #212121;
-  --light: #F5F5F5;
+  --light: #F8F9FA;
+  --restaurant-gradient: linear-gradient(135deg, #c62d42 0%, #dc3545 50%, #e74c3c 100%);
 }
 
 body {
@@ -13,14 +16,37 @@ body {
   background-color: var(--light);
 }
 
+/* Restaurant Branding Colors */
 .btn-primary {
-  background-color: var(--primary);
-  border-color: var(--primary);
+  background: var(--restaurant-gradient);
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(198, 45, 66, 0.3);
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #e65a2a;
-  border-color: #e65a2a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 45, 66, 0.4);
+  background: linear-gradient(135deg, #a02332 0%, #b02a37 100%);
+  border: none;
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
 }
 
 .badge-a-tiempo {
@@ -50,26 +76,189 @@ body {
 
 .card {
   border: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  background: white;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
 .navbar {
-  background-color: var(--primary) !important;
+  background: var(--restaurant-gradient) !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .stat-card {
   border-left: 4px solid var(--primary);
+  border-radius: 15px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 }
 
 .qr-container {
   background: white;
-  padding: 2rem;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border: 2px solid var(--primary-light);
+}
+
+/* Restaurant-themed form elements */
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem var(--primary-light);
+}
+
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem var(--primary-light);
+}
+
+/* Restaurant button variations */
+.btn-outline-primary {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-outline-success {
+  border: 2px solid var(--success);
+  color: var(--success);
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+  border: 2px solid var(--info);
+  color: var(--info);
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--info);
+  border-color: var(--info);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Modal enhancements */
+.modal-header {
+  background: var(--restaurant-gradient);
+  color: white;
+  border-radius: 15px 15px 0 0;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.btn-close {
+  filter: invert(1);
+}
+
+/* Restaurant badges and alerts */
+.alert-success {
+  background-color: var(--success);
+  border-color: var(--success);
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.alert-danger {
+  background-color: var(--danger);
+  border-color: var(--danger);
+  border-radius: 10px;
+}
+
+.alert-warning {
+  background-color: var(--warning);
+  border-color: var(--warning);
+  border-radius: 10px;
+}
+
+/* Global responsive utilities */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .btn-lg {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .table-responsive {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  .table {
+    font-size: 0.8rem;
+  }
+  
+  .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .form-select {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
 }
